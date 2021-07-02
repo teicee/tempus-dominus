@@ -923,6 +923,11 @@
                 input.blur();
 
                 viewDate = date.clone();
+                if (options.minDate && viewDate.isBefore(options.minDate, 'm')) {
+                    viewDate = options.minDate.clone().add(     options.stepping, 'm');
+                } else if (options.maxDate && viewDate.isAfter( options.maxDate, 'm')) {
+                    viewDate = options.maxDate.clone().subtract(options.stepping, 'm');
+                }
 
                 return picker;
             },
